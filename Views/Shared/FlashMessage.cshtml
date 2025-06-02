@@ -1,0 +1,37 @@
+@{
+    var message = TempData["Message"] as string;
+    var type = TempData["MessageType"]?.ToString()?.ToLower() ?? "info";
+
+    var alertClass = type switch
+    {
+        "success" => "bg-success text-white",
+        "error" => "bg-danger text-white",
+        "warning" => "bg-warning text-dark",
+        _ => "bg-info text-white"
+    };
+}
+
+@if (!string.IsNullOrEmpty(message))
+{
+    @* <div class="alert @alertClass alert-dismissible fade show" role="alert">
+        @message
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> *@
+
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1055">
+        <div id="toast-container">
+
+            <div class="toast @alertClass" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="7000"
+                data-bs-autohide="true">
+                <div class="toast-header">
+                    <strong class="me-auto text-capitalize">@type</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    @message
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

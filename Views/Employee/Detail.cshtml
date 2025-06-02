@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = $"{Model.LastName}'s Detail";
+}
+@model EmployeeDetailViewModel
+
+<h1>@ViewData["Title"]</h1>
+
+<a asp-action="Index" class="btn btn-outline-success">Back to list</a>
+<hr>
+
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+        @Model.FullName
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">@Model.Email</li>
+        <li class="list-group-item">@Model.Department</li>
+        <li class="list-group-item">@Model.Salary</li>
+        <li class="list-group-item">@Model.HireDate</li>
+    </ul>
+</div>
